@@ -8,6 +8,7 @@ if (isset($_SESSION['admin_id'])) {
 
 // Load the hardcoded admin configuration file
 $admin_config = require_once __DIR__ . '/../config/admin_config.php';
+require_once __DIR__ . '/../includes/admin_styles.php';
 
 $error = "";
 
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Admin Login</title>
     <!-- Absolute stylesheet path matching your project directory -->
-    <link rel="stylesheet" href="../assets/css/admin-login.css">
+    <?php render_admin_styles(__DIR__ . '/../assets/css/login_style.css', __DIR__ . '/../assets/css/admin-login.css'); ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>

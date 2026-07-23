@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/admin_styles.php';
 
 // Generate the public menu link dynamically based on the current server request
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
@@ -25,7 +26,7 @@ $public_menu_url = $protocol . "://" . $host . $base_path . "/index.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/admin-qr.css">
+    <?php render_admin_styles(__DIR__ . '/../assets/css/dashboard_style.css', __DIR__ . '/../assets/css/admin-qr.css'); ?>
 </head>
 <body>
 

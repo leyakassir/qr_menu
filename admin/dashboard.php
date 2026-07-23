@@ -9,6 +9,7 @@ if (!isset($_SESSION['admin_id'])) {
 
 // Connect to the database
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/admin_styles.php';
 
 // Fetch dynamic statistics from database
 $total_categories = 0;
@@ -78,7 +79,7 @@ if ($res_breakdown) {
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- External Dashboard CSS -->
-    <link rel="stylesheet" href="../assets/css/admin-dashboard.css">
+    <?php render_admin_styles(__DIR__ . '/../assets/css/dashboard_style.css', __DIR__ . '/../assets/css/admin-dashboard.css'); ?>
 </head>
 <body>
 

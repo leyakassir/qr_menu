@@ -26,6 +26,12 @@ if ($res_items) {
         $items[] = $row;
     }
 }
+
+$categoryItemCounts = [];
+foreach ($items as $item) {
+    $categoryId = (int) $item['category_id'];
+    $categoryItemCounts[$categoryId] = ($categoryItemCounts[$categoryId] ?? 0) + 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +51,10 @@ if ($res_items) {
         .item-img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #eee; }
         .category-title { border-left: 4px solid #ffc107; padding-left: 10px; margin-top: 30px; margin-bottom: 15px; font-weight: bold; color: #212529; }
         .container { max-width: 800px; margin: auto; padding: 20px; }
+        .category-nav { background: #fff; border-bottom: 1px solid #e9ecef; padding: 10px 16px; position: sticky; top: 0; z-index: 10; }
+        .category-nav-inner { max-width: 800px; margin: auto; display: flex; gap: 8px; overflow-x: auto; }
+        .category-nav a { white-space: nowrap; color: #495057; text-decoration: none; background: #f1f3f5; border-radius: 999px; padding: 7px 13px; font-size: 14px; font-weight: 500; }
+        .category-nav a:hover { color: #fff; background: #212529; }
     </style>
 </head>
 <body>
@@ -53,6 +63,18 @@ if ($res_items) {
         <h1><i class="fa-solid fa-utensils"></i> <?php echo htmlspecialchars($settings['business_name'] ?? 'Our Restaurant'); ?></h1>
         <p>Scan, browse, and enjoy our delicious menu items!</p>
     </div>
+
+    <?php if (!empty($categoryItemCounts)): ?>
+        <nav class="category-nav" aria-label="Menu categories">
+            <div class="category-nav-inner">
+                <?php foreach ($categories as $cat): ?>
+                    <?php if (!empty($categoryItemCounts[$cat['id']])): ?>
+                        <a href="#category-<?php echo (int) $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </nav>
+    <?php endif; ?>
 
     <div class="container">
         <?php if (count($categories) > 0): ?>
@@ -64,7 +86,7 @@ if ($res_items) {
                 ?>
 
                 <?php if (count($cat_items) > 0): ?>
-                    <h3 class="category-title"><?php echo htmlspecialchars($cat['name']); ?></h3>
+                    <h3 id="category-<?php echo (int) $cat['id']; ?>" class="category-title"><?php echo htmlspecialchars($cat['name']); ?></h3>
                     <div>
                         <?php foreach ($cat_items as $item): ?>
                             <div class="item-card">

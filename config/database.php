@@ -1,11 +1,4 @@
-<!-- //<?php
-//$conn=new mysqli('localhost','root','','qr_menu');
-//if($conn->connect_error){
-    //die("Connection failed: " . $conn->connect_error);
-//}
-// echo "Connected successfully";
-// 
-//<?php
+<?php
 $host = getenv('DB_HOST') ?: 'localhost';
 $user = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: '';

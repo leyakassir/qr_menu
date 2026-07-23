@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/config/database.php';
 
 // Fetch restaurant settings (business name, etc.)
@@ -26,13 +30,12 @@ if ($res_items) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($settings['restaurant_name'] ?? 'Digital Menu'); ?></title>
+    <title><?php echo htmlspecialchars($settings['business_name'] ?? 'Digital Menu'); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -48,7 +51,7 @@ if ($res_items) {
 
     <!-- Header -->
     <div class="menu-header shadow-sm">
-        <h1 class="fw-bold mb-1"><i class="fa-solid fa-burger text-warning me-2"></i><?php echo htmlspecialchars($settings['restaurant_name'] ?? 'Our Restaurant'); ?></h1>
+        <h1 class="fw-bold mb-1"><i class="fa-solid fa-burger text-warning me-2"></i><?php echo htmlspecialchars($settings['business_name'] ?? 'Our Restaurant'); ?></h1>
         <p class="text-white-50 mb-0">Scan, browse, and enjoy our delicious menu items!</p>
     </div>
 
@@ -95,7 +98,7 @@ if ($res_items) {
     </div>
 
     <footer class="text-center py-4 text-muted small border-top mt-5">
-        <p class="mb-0">&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($settings['restaurant_name'] ?? 'QR Menu'); ?>. All rights reserved.</p>
+        <p class="mb-0">&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($settings['business_name'] ?? 'QR Menu'); ?>. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

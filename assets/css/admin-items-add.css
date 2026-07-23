@@ -1,0 +1,6 @@
+@import url("dashboard_style.css");
+
+:root { --menu-gold: #ffc107; --menu-orange: #f97316; }
+.navbar-top { border-bottom: 3px solid var(--menu-gold); }
+.card { border-top: 4px solid var(--menu-gold); }
+.btn-primary { background-color: var(--menu-orange) !important; border-color: var(--menu-orange) !important; }

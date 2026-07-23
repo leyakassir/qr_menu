@@ -1,0 +1,5 @@
+@import url("login_style.css");
+
+:root { --menu-dark: #212529; --menu-gold: #ffc107; --menu-orange: #f97316; }
+.login-container, .login-card { border-top: 4px solid var(--menu-gold); }
+.btn-primary { background-color: var(--menu-orange) !important; border-color: var(--menu-orange) !important; }

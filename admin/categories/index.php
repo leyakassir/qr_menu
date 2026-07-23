@@ -52,6 +52,10 @@ if ($res) {
         .badge { display: inline-block; padding: 5px 9px; border-radius: 99px; }.bg-primary { background-color: #f97316 !important; }.text-primary { color: #f97316 !important; }
         @media (max-width: 800px) { .sidebar { position: static; width: 100%; height: auto; }.navbar-top { position: static; left: 0; }.main-content { margin-left: 0; padding: 25px 15px; } }
     </style>
+    <style>
+        .sidebar { background: #2b1b17; }.sidebar .nav-link:hover, .sidebar .nav-link.active, .sidebar .sub-menu a:hover, .sidebar .sub-menu a.active { background: #f7b733; }.sidebar-heading { color: #f7b733; }.navbar-top { border-bottom-color: #f7b733; }.btn-primary, .bg-primary:not(.badge) { background-color: #d94841 !important; }.badge.bg-primary { color: #b52f2a !important; background: #fff0d5 !important; }.text-primary { color: #d94841 !important; }.category-title { border-left-color: #f76707; }
+    </style>
+    <?php render_admin_sidebar_controls(); ?>
 </head>
 <body>
 

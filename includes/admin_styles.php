@@ -34,5 +34,34 @@ CSS;
     $pageCss = is_file($pageStylesheet) ? file_get_contents($pageStylesheet) : '';
     $pageCss = preg_replace('/@import\s+url\(["\'](?:dashboard_style|login_style)\.css["\']\);\s*/', '', $pageCss);
 
-    echo "<style>\n" . $fallbackCss . "\n" . $baseCss . "\n" . $pageCss . "\n</style>";
+    $themeCss = '.sidebar{background:#2b1b17}.sidebar .nav-link.active,.sidebar .nav-link:hover{background:rgba(247,183,51,.18)}.sidebar-heading{color:#f7b733}.navbar-top{border-bottom-color:#f7b733}.btn-primary{background:#d94841;color:#fff}.btn-primary:hover{background:#b52f2a}.text-primary{color:#d94841!important}body{background:#fff8ed}.badge.bg-primary{background:#fff0d5!important;color:#b52f2a!important}';
+    echo "<style>\n" . $fallbackCss . "\n" . $baseCss . "\n" . $pageCss . "\n" . $themeCss . "\n</style>";
+    render_admin_sidebar_controls();
+}
+
+/** Adds a responsive sidebar toggle once per page. */
+function render_admin_sidebar_controls(): void
+{
+    static $rendered = false;
+    if ($rendered) {
+        return;
+    }
+    $rendered = true;
+    echo <<<'HTML'
+<style>
+.sidebar-toggle { position: fixed; z-index: 2000; top: 16px; left: 268px; width: 42px; height: 42px; border: 0; border-radius: 10px; background: #d94841; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.2); cursor: pointer; font-size: 20px; }
+body.sidebar-collapsed .sidebar { transform: translateX(-100%); } body.sidebar-collapsed .navbar-top { left: 0 !important; width: 100% !important; } body.sidebar-collapsed .main-content { margin-left: 0 !important; } body.sidebar-collapsed .sidebar-toggle { left: 16px; }
+.sidebar { transition: transform .25s ease; }.navbar-top, .main-content { transition: margin-left .25s ease, left .25s ease, width .25s ease; }
+@media (max-width: 767px) { .sidebar-toggle { top: 10px; left: 12px; }.sidebar { transform: translateX(-100%); position: fixed !important; width: min(82vw, 280px) !important; height: 100vh !important; }.navbar-top { padding-left: 62px !important; }.main-content { margin-left: 0 !important; }.sidebar-toggle { left: 12px; } body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); } body:not(.sidebar-collapsed) .sidebar-toggle { left: min(calc(82vw - 52px), 228px); } }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var button = document.createElement('button');
+  button.type = 'button'; button.className = 'sidebar-toggle'; button.setAttribute('aria-label', 'Toggle navigation'); button.innerHTML = '&#9776;';
+  button.addEventListener('click', function () { document.body.classList.toggle('sidebar-collapsed'); });
+  document.body.appendChild(button);
+  if (window.matchMedia('(max-width: 767px)').matches) document.body.classList.add('sidebar-collapsed');
+});
+</script>
+HTML;
 }

@@ -302,3 +302,14 @@ button:hover{
 }
 
 }
+
+/* QR Menu colour palette and small-screen refinements */
+body { background: linear-gradient(135deg, #fff4dd 0%, #f8e5d0 100%); }
+.login-container { background: #fff; border: 1px solid #f3dfbd; }
+.left-panel { background: linear-gradient(145deg, #2b1b17, #6b2f21); }
+.login-box h1 { color: #212529; }
+input:focus { border: 2px solid #d94841; box-shadow: 0 0 12px rgba(217,72,65,.2); }
+button { background: #d94841; } button:hover { background: #b52f2a; }
+.plate { border-color: #f7b733; }.fork, .knife { background: #f76707; }
+.illustration h2 { color: #fff; }.illustration p { color: #e5e7eb; }
+@media(max-width:600px) { body { padding: 16px; align-items: flex-start; }.login-container { border-radius: 18px; }.left-panel, .right-panel { padding: 32px 22px; }.plate { width: 150px; height: 150px; border-width: 10px; }.fork, .knife { height: 100px; top: 26px; }.fork { left: 44px; }.knife { right: 44px; }.illustration h2 { font-size: 24px; }.login-box h1 { font-size: 30px; } }

@@ -6,7 +6,7 @@
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="/qr_menu_Leya_Kassir/dashboard.php"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a class="nav-link" href="<?= app_url('admin/dashboard.php') ?>"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
             </li>
             <div class="sidebar-heading">Management</div>
             <li class="nav-item">
@@ -14,8 +14,8 @@
                     <i class="fa-solid fa-list"></i> Categories <i class="fa-solid fa-chevron-down ms-auto small"></i>
                 </a>
                 <ul class="sub-menu collapse" id="categoriesCollapse">
-                    <li><a href="/qr_menu_Leya_Kassir/categories/index.php">View Categories</a></li>
-                    <li><a href="/qr_menu_Leya_Kassir/categories/add.php">Add Category</a></li>
+                    <li><a href="<?= app_url('admin/categories/index.php') ?>">View Categories</a></li>
+                    <li><a href="<?= app_url('admin/categories/add.php') ?>">Add Category</a></li>
                 </ul>
             </li>
             <li class="nav-item">
@@ -23,16 +23,16 @@
                     <i class="fa-solid fa-utensils"></i> Menu Items <i class="fa-solid fa-chevron-down ms-auto small"></i>
                 </a>
                 <ul class="sub-menu collapse" id="itemsCollapse">
-                    <li><a href="/qr_menu_Leya_Kassir/items/index.php">View Items</a></li>
-                    <li><a href="/qr_menu_Leya_Kassir/items/add.php">Add Item</a></li>
+                    <li><a href="<?= app_url('admin/items/index.php') ?>">View Items</a></li>
+                    <li><a href="<?= app_url('admin/items/add.php') ?>">Add Item</a></li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/settings/index.php"><i class="fa-solid fa-store"></i> Business Settings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/qr.php"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= app_url('admin/settings/index.php') ?>"><i class="fa-solid fa-store"></i> Business Settings</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= app_url('admin/qr.php') ?>"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
             
             <div class="sidebar-heading">Account</div>
-            <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/profile.php"><i class="fa-solid fa-user"></i> Profile</a></li>
-            <li class="nav-item"><a class="nav-link text-danger" href="/qr_menu_Leya_Kassir/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= app_url('admin/profile.php') ?>"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li class="nav-item"><a class="nav-link text-danger" href="<?= app_url('admin/logout.php') ?>"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
         </ul>
     </div>
 </nav>

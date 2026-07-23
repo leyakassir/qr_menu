@@ -78,7 +78,7 @@ if ($res_breakdown) {
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- External Dashboard CSS -->
-    <link rel="stylesheet" href="/qr_menu_Leya_Kassir/assets/css/dashboard_style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_style.css">
 </head>
 <body>
 
@@ -103,7 +103,7 @@ if ($res_breakdown) {
                         <i class="fa-solid fa-list"></i> Categories <i class="fa-solid fa-chevron-down ms-auto small"></i>
                     </a>
                     <ul class="sub-menu collapse" id="categoriesCollapse">
-                        <li><a href="/qr_menu_Leya_Kassir/admin/categories/index.php">View Categories</a></li>
+                        <li><a href="categories/index.php">View Categories</a></li>
                         <li><a href="categories/add.php">Add Category</a></li>
                     </ul>
                 </li>
@@ -117,24 +117,24 @@ if ($res_breakdown) {
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/qr_menu_Leya_Kassir/admin/settings/index.php">
+                    <a class="nav-link" href="settings/index.php">
                         <i class="fa-solid fa-store"></i> Business Settings
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/qr_menu_Leya_Kassir/admin/qr.php">
+                    <a class="nav-link" href="qr.php">
                         <i class="fa-solid fa-qrcode"></i> QR Code
                     </a>
                 </li>
                 
                 <div class="sidebar-heading">Account</div>
                 <li class="nav-item">
-                    <a class="nav-link" href="/qr_menu_Leya_Kassir/admin/profile.php">
+                    <a class="nav-link" href="profile.php">
                         <i class="fa-solid fa-user"></i> Profile
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-danger" href="/qr_menu_Leya_Kassir/admin/logout.php">
+                    <a class="nav-link text-danger" href="logout.php">
                         <i class="fa-solid fa-right-from-bracket"></i> Logout
                     </a>
                 </li>
@@ -158,10 +158,10 @@ if ($res_breakdown) {
                         <span class="fw-medium"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Administrator'); ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="/qr_menu_Leya_Kassir/admin/profile.php"><i class="fa-solid fa-user me-2 text-muted"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="/qr_menu_Leya_Kassir/admin/settings/index.php"><i class="fa-solid fa-gear me-2 text-muted"></i> Settings</a></li>
+                        <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user me-2 text-muted"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="settings/index.php"><i class="fa-solid fa-gear me-2 text-muted"></i> Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="/qr_menu_Leya_Kassir/admin/logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        <li><a class="dropdown-item text-danger" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -328,16 +328,16 @@ if ($res_breakdown) {
                         <h5 class="fw-bold m-0 text-dark"><i class="fa-solid fa-bolt text-warning me-2"></i> Quick Actions</h5>
                     </div>
                     <div class="card-body d-grid gap-2">
-                        <a href="/qr_menu_Leya_Kassir/admin/categories/add.php" class="btn btn-outline-primary text-start py-2.5 px-3 fw-medium">
+                        <a href="categories/add.php" class="btn btn-outline-primary text-start py-2.5 px-3 fw-medium">
                             <i class="fa-solid fa-plus-circle me-2"></i> Add Category
                         </a>
-                        <a href="/qr_menu_Leya_Kassir/admin/items/add.php" class="btn btn-outline-primary text-start py-2.5 px-3 fw-medium">
+                        <a href="items/add.php" class="btn btn-outline-primary text-start py-2.5 px-3 fw-medium">
                             <i class="fa-solid fa-plus-circle me-2"></i> Add Menu Item
                         </a>
-                        <a href="/qr_menu_Leya_Kassir/admin/settings/index.php" class="btn btn-outline-secondary text-start py-2.5 px-3 fw-medium">
+                        <a href="settings/index.php" class="btn btn-outline-secondary text-start py-2.5 px-3 fw-medium">
                             <i class="fa-solid fa-gear me-2"></i> Business Settings
                         </a>
-                        <a href="/qr_menu_Leya_Kassir/admin/qr.php" class="btn btn-outline-success text-start py-2.5 px-3 fw-medium">
+                        <a href="qr.php" class="btn btn-outline-success text-start py-2.5 px-3 fw-medium">
                             <i class="fa-solid fa-qrcode me-2"></i> View QR Code
                         </a>
                     </div>

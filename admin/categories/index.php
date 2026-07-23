@@ -33,7 +33,7 @@ if ($res) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/qr_menu_Leya_Kassir/assets/css/dashboard_style.css">
+    <link rel="stylesheet" href="<?= app_url() ?>assets/css/dashboard_style.css">
 </head>
 <body>
 
@@ -46,7 +46,7 @@ if ($res) {
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="/qr_menu_Leya_Kassir/admin/dashboard.php"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                    <a class="nav-link" href="<?= app_url() ?>admin/dashboard.php"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
                 </li>
                 <div class="sidebar-heading">Management</div>
                 <li class="nav-item">
@@ -63,16 +63,16 @@ if ($res) {
                         <i class="fa-solid fa-utensils"></i> Menu Items <i class="fa-solid fa-chevron-down ms-auto small"></i>
                     </a>
                     <ul class="sub-menu collapse" id="itemsCollapse">
-                        <li><a href="/qr_menu_Leya_Kassir/admin/items/index.php">View Items</a></li>
-                        <li><a href="/qr_menu_Leya_Kassir/admin/items/add.php">Add Item</a></li>
+                        <li><a href="<?= app_url() ?>admin/items/index.php">View Items</a></li>
+                        <li><a href="<?= app_url() ?>admin/items/add.php">Add Item</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/admin/settings/index.php"><i class="fa-solid fa-store"></i> Business Settings</a></li>
-                <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/admin/qr.php"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= app_url() ?>admin/settings/index.php"><i class="fa-solid fa-store"></i> Business Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= app_url() ?>admin/qr.php"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
 
                 <div class="sidebar-heading">Account</div>
-                <li class="nav-item"><a class="nav-link" href="/qr_menu_Leya_Kassir/admin/profile.php"><i class="fa-solid fa-user"></i> Profile</a></li>
-                <li class="nav-item"><a class="nav-link text-danger" href="/qr_menu_Leya_Kassir/admin/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= app_url() ?>admin/profile.php"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <li class="nav-item"><a class="nav-link text-danger" href="<?= app_url() ?>admin/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -92,10 +92,10 @@ if ($res) {
                         <span class="fw-medium"><?php echo htmlspecialchars($_SESSION['admin_name'] ?? 'Administrator'); ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="/qr_menu_Leya_Kassir/admin/profile.php"><i class="fa-solid fa-user me-2 text-muted"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="/qr_menu_Leya_Kassir/admin/settings/index.php"><i class="fa-solid fa-gear me-2 text-muted"></i> Settings</a></li>
+                        <li><a class="dropdown-item" href="<?= app_url() ?>admin/profile.php"><i class="fa-solid fa-user me-2 text-muted"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="<?= app_url() ?>admin/settings/index.php"><i class="fa-solid fa-gear me-2 text-muted"></i> Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="/qr_menu_Leya_Kassir/admin/logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        <li><a class="dropdown-item text-danger" href="<?= app_url() ?>admin/logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

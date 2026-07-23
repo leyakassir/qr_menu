@@ -1,6 +1,6 @@
 <?php
 /** Render shared and page-specific admin CSS without relying on an HTTP asset request. */
-function render_admin_styles(string $baseStylesheet, string $pageStylesheet): void
+function render_admin_styles(string $baseStylesheet, string $pageStylesheet, bool $includeSidebarControls = true): void
 {
     $fallbackCss = <<<'CSS'
 * { box-sizing: border-box; }
@@ -34,9 +34,11 @@ CSS;
     $pageCss = is_file($pageStylesheet) ? file_get_contents($pageStylesheet) : '';
     $pageCss = preg_replace('/@import\s+url\(["\'](?:dashboard_style|login_style)\.css["\']\);\s*/', '', $pageCss);
 
-    $themeCss = '.sidebar{background:#2b1b17}.sidebar .nav-link.active,.sidebar .nav-link:hover{background:rgba(247,183,51,.18)}.sidebar-heading{color:#f7b733}.navbar-top{border-bottom-color:#f7b733}.btn-primary{background:#d94841;color:#fff}.btn-primary:hover{background:#b52f2a}.text-primary{color:#d94841!important}body{background:#fff8ed}.badge.bg-primary{background:#fff0d5!important;color:#b52f2a!important}.bg-primary.bg-opacity-10{background:#fce4e1!important}.sidebar .sub-menu{display:none}.sidebar .sub-menu.menu-open{display:block}.sidebar-dropdown-trigger .fa-chevron-down{margin-left:auto;transition:transform .2s}.sidebar-dropdown-trigger.is-open .fa-chevron-down{transform:rotate(180deg)}';
+    $themeCss = '.sidebar{background:#2b1b17}.sidebar .nav-link.active,.sidebar .nav-link:hover{background:rgba(247,183,51,.18)}.sidebar-heading{color:#f7b733}.navbar-top{border-bottom-color:#f7b733}.btn-primary{background:#d94841;color:#fff}.btn-primary:hover{background:#b52f2a}.text-primary{color:#d94841!important}body{background:#fff8ed}.badge.bg-primary{background:#fff0d5!important;color:#b52f2a!important}.bg-primary.bg-opacity-10{background:#fce4e1!important}.sidebar .sub-menu{display:none}.sidebar .sub-menu.menu-open{display:block}.sidebar-dropdown-trigger .fa-chevron-down{margin-left:auto;transition:transform .2s}.sidebar-dropdown-trigger.is-open .fa-chevron-down{transform:rotate(180deg)}.main-content{min-width:0}.table-responsive{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}';
     echo "<style>\n" . $fallbackCss . "\n" . $baseCss . "\n" . $pageCss . "\n" . $themeCss . "\n</style>";
-    render_admin_sidebar_controls();
+    if ($includeSidebarControls) {
+        render_admin_sidebar_controls();
+    }
 }
 
 /** Adds a responsive sidebar toggle once per page. */
@@ -49,11 +51,11 @@ function render_admin_sidebar_controls(): void
     $rendered = true;
     echo <<<'HTML'
 <style>
-.sidebar-toggle { position: fixed; z-index: 2000; top: 16px; left: 268px; width: 42px; height: 42px; border: 0; border-radius: 10px; background: #d94841; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.2); cursor: pointer; font-size: 20px; }
+.sidebar-toggle { position: fixed; z-index: 2000; top: 15px; left: 272px; width: 42px; height: 42px; border: 2px solid #f7b733; border-radius: 12px; background: #2b1b17; color: #fff; box-shadow: 0 4px 12px rgba(43,27,23,.18); cursor: pointer; font-size: 20px; line-height: 1; }
 .sidebar .sub-menu { display: none; }.sidebar .sub-menu.menu-open { display: block; }.sidebar-dropdown-trigger .fa-chevron-down { margin-left: auto; transition: transform .2s; }.sidebar-dropdown-trigger.is-open .fa-chevron-down { transform: rotate(180deg); }
-body.sidebar-collapsed .sidebar { transform: translateX(-100%); } body.sidebar-collapsed .navbar-top { left: 0 !important; width: 100% !important; } body.sidebar-collapsed .main-content { margin-left: 0 !important; } body.sidebar-collapsed .sidebar-toggle { left: 16px; }
+body.sidebar-collapsed .sidebar { transform: translateX(-100%); } body.sidebar-collapsed .navbar-top { left: 0 !important; width: 100% !important; } body.sidebar-collapsed .main-content { margin-left: 0 !important; } body.sidebar-collapsed .sidebar-toggle { left: 16px; }.navbar-top .container-fluid { padding-left: 78px !important; }
 .sidebar { transition: transform .25s ease; }.navbar-top, .main-content { transition: margin-left .25s ease, left .25s ease, width .25s ease; }
-@media (max-width: 767px) { .sidebar-toggle { top: 10px; left: 12px; }.sidebar { transform: translateX(-100%); position: fixed !important; width: min(82vw, 280px) !important; height: 100vh !important; }.navbar-top { padding-left: 62px !important; }.main-content { margin-left: 0 !important; }.sidebar-toggle { left: 12px; } body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); } body:not(.sidebar-collapsed) .sidebar-toggle { left: min(calc(82vw - 52px), 228px); } }
+@media (max-width: 767px) { .sidebar-toggle { top: 10px; left: 12px; }.sidebar { transform: translateX(-100%); position: fixed !important; width: min(82vw, 280px) !important; height: 100vh !important; }.navbar-top { padding-left: 62px !important; }.navbar-top .container-fluid { padding-left: 62px !important; }.main-content { margin-left: 0 !important; }.sidebar-toggle { left: 12px; } body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); } body:not(.sidebar-collapsed) .sidebar-toggle { left: min(calc(82vw - 52px), 228px); } }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {

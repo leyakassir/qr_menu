@@ -48,7 +48,7 @@ if ($res) {
         .main-content { margin-left: 260px; padding: 105px 30px 30px; }
         .card { overflow: hidden; background: #fff; border-radius: 14px; box-shadow: 0 3px 16px rgba(0,0,0,.08); }
         .card-body { padding: 20px; }.btn { display: inline-block; padding: 10px 15px; border-radius: 8px; text-decoration: none; }.btn-primary { color: #fff; background: #f97316; }
-        .table { width: 100%; border-collapse: collapse; }.table th, .table td { padding: 14px; border-bottom: 1px solid #e8ecf1; text-align: left; }.table-light th { background: #fff7dd; }
+        .table-responsive { width: 100%; overflow-x: auto; }.table { width: 100%; min-width: 620px; border-collapse: collapse; }.table th, .table td { padding: 14px; border-bottom: 1px solid #e8ecf1; text-align: left; }.table-light th { background: #fff7dd; }
         .badge { display: inline-block; padding: 5px 9px; border-radius: 99px; }.bg-primary { background-color: #f97316 !important; }.text-primary { color: #f97316 !important; }
         @media (max-width: 800px) { .sidebar { position: static; width: 100%; height: auto; }.navbar-top { position: static; left: 0; }.main-content { margin-left: 0; padding: 25px 15px; } }
     </style>

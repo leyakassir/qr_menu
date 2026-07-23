@@ -34,7 +34,24 @@ if ($res) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <?php render_admin_styles(__DIR__ . '/../../assets/css/dashboard_style.css', __DIR__ . '/../../assets/css/admin-categories-index.css'); ?>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f5f7fb; color: #1f2937; font-family: Arial, sans-serif; }
+        .sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; overflow-y: auto; background: #212529; color: #fff; padding: 20px 0; }
+        .sidebar .nav { display: block; margin: 0; padding: 0; list-style: none; }
+        .sidebar .nav-link, .sidebar .sub-menu a { display: block; padding: 11px 22px; color: #d6dce4; text-decoration: none; }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active, .sidebar .sub-menu a:hover, .sidebar .sub-menu a.active { background: #f59e0b; color: #1f2937; }
+        .sidebar .sub-menu { display: block; margin: 0; padding: 0 0 8px 28px; list-style: none; }
+        .sidebar-heading { margin: 20px 22px 8px; color: #fbbf24; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .navbar-top { position: fixed; z-index: 2; top: 0; left: 260px; right: 0; min-height: 72px; display: flex; align-items: center; background: #fff; border-bottom: 3px solid #fbbf24; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+        .navbar-top .container-fluid { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 28px; }
+        .main-content { margin-left: 260px; padding: 105px 30px 30px; }
+        .card { overflow: hidden; background: #fff; border-radius: 14px; box-shadow: 0 3px 16px rgba(0,0,0,.08); }
+        .card-body { padding: 20px; }.btn { display: inline-block; padding: 10px 15px; border-radius: 8px; text-decoration: none; }.btn-primary { color: #fff; background: #f97316; }
+        .table { width: 100%; border-collapse: collapse; }.table th, .table td { padding: 14px; border-bottom: 1px solid #e8ecf1; text-align: left; }.table-light th { background: #fff7dd; }
+        .badge { display: inline-block; padding: 5px 9px; border-radius: 99px; }.bg-primary { background-color: #f97316 !important; }.text-primary { color: #f97316 !important; }
+        @media (max-width: 800px) { .sidebar { position: static; width: 100%; height: auto; }.navbar-top { position: static; left: 0; }.main-content { margin-left: 0; padding: 25px 15px; } }
+    </style>
 </head>
 <body>
 

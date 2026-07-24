@@ -12,20 +12,47 @@ require_once __DIR__ . '/../../includes/admin_styles.php';
 $success = '';
 $error = '';
 
+// Older versions of this project use slightly different settings columns.
+// Read the table structure first so saving never references a missing column.
+$settingsColumns = [];
+$columnsResult = $conn->query('SHOW COLUMNS FROM business_settings');
+if ($columnsResult) {
+    while ($column = $columnsResult->fetch_assoc()) {
+        $settingsColumns[] = $column['Field'];
+    }
+}
+$nameColumn = in_array('business_name', $settingsColumns, true) ? 'business_name'
+    : (in_array('restaurant_name', $settingsColumns, true) ? 'restaurant_name' : null);
+$currencyColumn = in_array('currency', $settingsColumns, true) ? 'currency'
+    : (in_array('currency_symbol', $settingsColumns, true) ? 'currency_symbol'
+    : (in_array('currency_code', $settingsColumns, true) ? 'currency_code' : null));
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $business_name   = trim($_POST['business_name'] ?? '');
     $currency        = trim($_POST['currency'] ?? '$');
 
-    if (empty($business_name)) {
+    if ($nameColumn === null) {
+        $error = 'The business_settings table does not contain a business name column.';
+    } elseif (empty($business_name)) {
         $error = 'Restaurant name cannot be empty.';
     } else {
-        $check = $conn->query("SELECT id FROM business_settings LIMIT 1");
+        $check = $conn->query("SELECT 1 FROM business_settings LIMIT 1");
         if ($check && $check->num_rows > 0) {
-            $stmt = $conn->prepare("UPDATE business_settings SET business_name = ?, currency = ?");
-            $stmt->bind_param("ss", $business_name, $currency);
+            if ($currencyColumn !== null) {
+                $stmt = $conn->prepare("UPDATE business_settings SET `$nameColumn` = ?, `$currencyColumn` = ?");
+                $stmt->bind_param("ss", $business_name, $currency);
+            } else {
+                $stmt = $conn->prepare("UPDATE business_settings SET `$nameColumn` = ?");
+                $stmt->bind_param("s", $business_name);
+            }
         } else {
-            $stmt = $conn->prepare("INSERT INTO business_settings (business_name, currency) VALUES (?, ?)");
-            $stmt->bind_param("ss", $business_name, $currency);
+            if ($currencyColumn !== null) {
+                $stmt = $conn->prepare("INSERT INTO business_settings (`$nameColumn`, `$currencyColumn`) VALUES (?, ?)");
+                $stmt->bind_param("ss", $business_name, $currency);
+            } else {
+                $stmt = $conn->prepare("INSERT INTO business_settings (`$nameColumn`) VALUES (?)");
+                $stmt->bind_param("s", $business_name);
+            }
         }
 
         if ($stmt->execute()) {
@@ -45,6 +72,8 @@ $res = $conn->query("SELECT * FROM business_settings LIMIT 1");
 if ($res && $res->num_rows > 0) {
     $settings = $res->fetch_assoc();
 }
+$settings['business_name'] = $nameColumn !== null ? ($settings[$nameColumn] ?? '') : '';
+$settings['currency'] = $currencyColumn !== null ? ($settings[$currencyColumn] ?? '$') : '$';
 ?>
 
 <!DOCTYPE html>
@@ -150,6 +179,7 @@ if ($res && $res->num_rows > 0) {
                             <?php endif; ?>
 
                             <form method="POST" action="">
+                                <?php if ($currencyColumn !== null): ?>
                                 <div class="mb-4">
                                     <label for="business_name" class="form-label fw-semibold text-secondary">Restaurant Name <span class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -167,6 +197,9 @@ if ($res && $res->num_rows > 0) {
                                     </div>
                                     <div class="form-text mt-1 text-muted">The symbol used beside your menu item prices.</div>
                                 </div>
+                                <?php else: ?>
+                                <div class="alert alert-light border small mb-4">Your current database does not have a currency setting, so prices will use the default <strong>$</strong> symbol.</div>
+                                <?php endif; ?>
 
                                 <div class="text-end pt-3 border-top">
                                     <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold shadow-sm">

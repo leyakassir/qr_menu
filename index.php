@@ -64,6 +64,7 @@ foreach ($items as $item) {
         .item-card { border-color: #f1e4cc; border-radius: 16px; padding: 16px; gap: 16px; box-shadow: 0 7px 20px rgba(100,70,20,.08); transition: transform .2s, box-shadow .2s; }
         .item-card:hover { transform: translateY(-2px); box-shadow: 0 11px 24px rgba(100,70,20,.14); }.item-img { width: 86px; height: 86px; flex: 0 0 86px; border-radius: 12px; background: #fff1cf; }
         .category-title { border-left-color: #f97316; border-left-width: 5px; padding-left: 12px; margin-top: 38px; font-weight: 700; }
+        .empty-category { margin: 0; padding: 14px 16px; border: 1px dashed #e8c98f; border-radius: 12px; color: #7a5a2a; background: #fffaf0; font-size: .94rem; }
         .category-nav { background: rgba(255,255,255,.96); border-bottom-color: #f3dfbd; padding: 11px 16px; backdrop-filter: blur(8px); }.category-nav-inner { max-width: 900px; gap: 9px; }
         .category-nav a { background: #fff4dc; padding: 8px 14px; font-weight: 600; }.category-nav a:hover { background: #f97316; }
         @media (max-width: 560px) { .menu-header { padding: 36px 16px 32px; }.menu-brand-logo { width: 88px; height: 88px; }.container { padding: 16px 12px 28px; }.item-card { gap: 12px; padding: 12px; align-items: flex-start; }.item-img { width: 68px; height: 68px; flex-basis: 68px; }.item-card h4 { font-size: 16px !important; }.category-title { margin-top: 28px; } }
@@ -79,13 +80,11 @@ foreach ($items as $item) {
         <p>Scan, browse, and enjoy our delicious menu items!</p>
     </div>
 
-    <?php if (!empty($categoryItemCounts)): ?>
+    <?php if (!empty($categories)): ?>
         <nav class="category-nav" aria-label="Menu categories">
             <div class="category-nav-inner">
                 <?php foreach ($categories as $cat): ?>
-                    <?php if (!empty($categoryItemCounts[$cat['id']])): ?>
-                        <a href="#category-<?php echo (int) $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></a>
-                    <?php endif; ?>
+                    <a href="#category-<?php echo (int) $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></a>
                 <?php endforeach; ?>
             </div>
         </nav>
@@ -100,8 +99,8 @@ foreach ($items as $item) {
                     });
                 ?>
 
+                <h3 id="category-<?php echo (int) $cat['id']; ?>" class="category-title"><?php echo htmlspecialchars($cat['name']); ?></h3>
                 <?php if (count($cat_items) > 0): ?>
-                    <h3 id="category-<?php echo (int) $cat['id']; ?>" class="category-title"><?php echo htmlspecialchars($cat['name']); ?></h3>
                     <div>
                         <?php foreach ($cat_items as $item): ?>
                             <div class="item-card">
@@ -120,6 +119,8 @@ foreach ($items as $item) {
                             </div>
                         <?php endforeach; ?>
                     </div>
+                <?php else: ?>
+                    <p class="empty-category">New items for this category will appear here soon.</p>
                 <?php endif; ?>
             <?php endforeach; ?>
         <?php else: ?>

@@ -301,6 +301,17 @@ button:hover{
     padding:40px;
 }
 
+.login-brand-logo{
+    width:96px;
+    height:96px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin:0 auto 22px;
+    border:4px solid #f7b733;
+    box-shadow:0 8px 20px rgba(0,0,0,.22);
+}
+
 }
 
 /* QR Menu colour palette and small-screen refinements */

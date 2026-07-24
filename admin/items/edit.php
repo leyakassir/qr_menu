@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoryId = (int) ($_POST['category_id'] ?? 0);
     $price = (float) ($_POST['price'] ?? 0);
     $description = trim($_POST['description'] ?? '');
+    $calories = max(0, (int) ($_POST['calories'] ?? 0));
     $available = isset($_POST['available']) ? 1 : 0;
     $imageName = $item['image'] ?? '';
 
@@ -61,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($error === '') {
-        $statement = $conn->prepare('UPDATE menu_items SET name = ?, category_id = ?, price = ?, description = ?, available = ?, image = ? WHERE id = ?');
-        $statement->bind_param('sidsisi', $name, $categoryId, $price, $description, $available, $imageName, $itemId);
+        $statement = $conn->prepare('UPDATE menu_items SET name = ?, category_id = ?, price = ?, description = ?, available = ?, image = ?, calories = ? WHERE id = ?');
+        $statement->bind_param('sidsisii', $name, $categoryId, $price, $description, $available, $imageName, $calories, $itemId);
         if ($statement->execute()) {
             header('Location: index.php?updated=1');
             exit();
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->close();
     }
 
-    $item = array_merge($item, ['name' => $name, 'category_id' => $categoryId, 'price' => $price, 'description' => $description, 'available' => $available, 'image' => $imageName]);
+    $item = array_merge($item, ['name' => $name, 'category_id' => $categoryId, 'price' => $price, 'description' => $description, 'calories' => $calories, 'available' => $available, 'image' => $imageName]);
 }
 ?>
 <!DOCTYPE html>
@@ -93,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="name">Item name</label><input class="form-control" id="name" name="name" value="<?= htmlspecialchars($item['name']) ?>" required>
             <div class="form-grid"><div><label for="category_id">Category</label><select class="form-select" id="category_id" name="category_id" required><?php foreach ($categories as $category): ?><option value="<?= $category['id'] ?>" <?= (int) $item['category_id'] === (int) $category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select></div><div><label for="price">Price</label><input class="form-control" id="price" name="price" type="number" step="0.01" min="0.01" value="<?= htmlspecialchars((string) $item['price']) ?>" required></div></div>
             <label for="description">Description</label><textarea class="form-control" id="description" name="description" rows="4"><?= htmlspecialchars($item['description'] ?? '') ?></textarea>
+            <label for="calories">Calories (optional)</label><input class="form-control" id="calories" name="calories" type="number" min="0" step="1" value="<?= htmlspecialchars((string) ($item['calories'] ?? 0)) ?>">
             <label for="image">Replace image (optional)</label><input class="form-control" id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp">
             <p><label><input type="checkbox" name="available" value="1" <?= !empty($item['available']) ? 'checked' : '' ?>> Available on the public menu</label></p>
             <button class="btn btn-primary" type="submit">Save changes</button>

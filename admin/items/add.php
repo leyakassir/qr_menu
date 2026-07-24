@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category_id = intval($_POST['category_id'] ?? 0);
     $price       = floatval($_POST['price'] ?? 0);
     $description = trim($_POST['description'] ?? '');
+    $calories    = max(0, intval($_POST['calories'] ?? 0));
     $available   = isset($_POST['available']) ? 1 : 0;
     
     $image_name  = '';
@@ -59,8 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($name) || $category_id <= 0 || $price <= 0) {
             $error = 'Please fill out all required fields with valid data.';
         } else {
-            $stmt = $conn->prepare("INSERT INTO menu_items (name, category_id, price, description, available, image) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sidsis", $name, $category_id, $price, $description, $available, $image_name);
+            // The database requires a calories value, so use 0 when it is not provided.
+            $stmt = $conn->prepare("INSERT INTO menu_items (name, category_id, price, description, available, image, calories) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sidsisi", $name, $category_id, $price, $description, $available, $image_name, $calories);
             
             if ($stmt->execute()) {
                 $success = 'Menu item added successfully!';
@@ -193,6 +195,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="mb-3">
                                 <label for="description" class="form-label fw-semibold">Description</label>
                                 <textarea class="form-control" id="description" name="description" rows="3" placeholder="Brief ingredients or description of the item..."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="calories" class="form-label fw-semibold">Calories <span class="text-muted fw-normal">(optional)</span></label>
+                                <input type="number" min="0" step="1" class="form-control" id="calories" name="calories" placeholder="e.g. 450">
                             </div>
 
                             <div class="mb-3">

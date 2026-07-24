@@ -51,19 +51,47 @@ function render_admin_sidebar_controls(): void
     $rendered = true;
     echo <<<'HTML'
 <style>
-.sidebar-toggle { position: fixed; z-index: 2000; top: 15px; left: 272px; width: 42px; height: 42px; border: 2px solid #f7b733; border-radius: 12px; background: #2b1b17; color: #fff; box-shadow: 0 4px 12px rgba(43,27,23,.18); cursor: pointer; font-size: 20px; line-height: 1; }
+/* Keep the navigation drawer above every card, table and Bootstrap component. */
+.sidebar { z-index: 1200 !important; }
+.sidebar-toggle { position: fixed; z-index: 1301; top: 15px; left: 272px; width: 42px; height: 42px; border: 2px solid #f7b733; border-radius: 12px; background: #2b1b17; color: #fff; box-shadow: 0 4px 12px rgba(43,27,23,.18); cursor: pointer; font-size: 20px; line-height: 1; }
+.sidebar-scrim { display: none; }
 .sidebar .sub-menu { display: none; }.sidebar .sub-menu.menu-open { display: block; }.sidebar-dropdown-trigger .fa-chevron-down { margin-left: auto; transition: transform .2s; }.sidebar-dropdown-trigger.is-open .fa-chevron-down { transform: rotate(180deg); }
 body.sidebar-collapsed .sidebar { transform: translateX(-100%); } body.sidebar-collapsed .navbar-top { left: 0 !important; width: 100% !important; } body.sidebar-collapsed .main-content { margin-left: 0 !important; } body.sidebar-collapsed .sidebar-toggle { left: 16px; }.navbar-top .container-fluid { padding-left: 78px !important; }
 .sidebar { transition: transform .25s ease; }.navbar-top, .main-content { transition: margin-left .25s ease, left .25s ease, width .25s ease; }
-@media (max-width: 900px) { .sidebar-toggle { top: 10px; left: 12px; }.sidebar { transform: translateX(-100%); position: fixed !important; width: min(82vw, 280px) !important; height: 100vh !important; }.navbar-top { padding-left: 62px !important; }.navbar-top .container-fluid { padding-left: 62px !important; }.main-content { margin-left: 0 !important; }.sidebar-toggle { left: 12px; } body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); } body:not(.sidebar-collapsed) .sidebar-toggle { left: min(calc(82vw - 52px), 228px); } }
+@media (max-width: 900px) {
+  .sidebar-toggle { top: 10px; left: 12px; }
+  .sidebar { transform: translateX(-100%); position: fixed !important; width: min(82vw, 280px) !important; height: 100vh !important; }
+  .navbar-top { padding-left: 62px !important; }
+  .navbar-top .container-fluid { padding-left: 62px !important; }
+  .navbar-top .navbar-brand { max-width: calc(100vw - 150px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .navbar-top .navbar-nav .fw-medium { display: none; }
+  .main-content { margin-left: 0 !important; }
+  body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); }
+  body:not(.sidebar-collapsed) .sidebar-toggle { left: min(calc(82vw - 52px), 228px); }
+  body:not(.sidebar-collapsed) .sidebar-scrim { display: block; position: fixed; z-index: 1190; inset: 0; background: rgba(20, 12, 9, .45); }
+}
+@media (max-width: 600px) {
+  .main-content { padding: 92px 14px 24px !important; }
+  .main-content > .d-flex.justify-content-between { flex-direction: column; align-items: flex-start !important; gap: 14px; }
+  .main-content h1, .main-content h2 { font-size: clamp(1.65rem, 8vw, 2rem); }
+  .card-body { padding: 16px; }
+  .btn { max-width: 100%; }
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var mobileQuery = window.matchMedia('(max-width: 900px)');
   var button = document.createElement('button');
   button.type = 'button'; button.className = 'sidebar-toggle'; button.setAttribute('aria-label', 'Toggle navigation'); button.innerHTML = '&#9776;';
+  var scrim = document.createElement('button');
+  scrim.type = 'button'; scrim.className = 'sidebar-scrim'; scrim.setAttribute('aria-label', 'Close navigation');
+  function closeSidebar() { document.body.classList.add('sidebar-collapsed'); }
   button.addEventListener('click', function () { document.body.classList.toggle('sidebar-collapsed'); });
+  scrim.addEventListener('click', closeSidebar);
   document.body.appendChild(button);
-  if (window.matchMedia('(max-width: 900px)').matches) document.body.classList.add('sidebar-collapsed');
+  document.body.appendChild(scrim);
+  if (mobileQuery.matches) closeSidebar();
+  mobileQuery.addEventListener('change', function (event) { if (event.matches) closeSidebar(); });
 
   document.querySelectorAll('a[href="#categoriesCollapse"], a[href="#itemsCollapse"]').forEach(function (trigger) {
     var menu = document.querySelector(trigger.getAttribute('href'));
@@ -75,6 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
       menu.classList.toggle('menu-open');
       trigger.classList.toggle('is-open', menu.classList.contains('menu-open'));
     });
+  });
+
+  document.querySelectorAll('.sidebar a[href]:not([href^="#"])').forEach(function (link) {
+    link.addEventListener('click', function () { if (mobileQuery.matches) closeSidebar(); });
   });
 });
 </script>

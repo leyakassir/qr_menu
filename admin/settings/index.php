@@ -13,19 +13,19 @@ $success = '';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $restaurant_name = trim($_POST['restaurant_name'] ?? '');
+    $business_name   = trim($_POST['business_name'] ?? '');
     $currency        = trim($_POST['currency'] ?? '$');
 
-    if (empty($restaurant_name)) {
+    if (empty($business_name)) {
         $error = 'Restaurant name cannot be empty.';
     } else {
         $check = $conn->query("SELECT id FROM business_settings LIMIT 1");
         if ($check && $check->num_rows > 0) {
-            $stmt = $conn->prepare("UPDATE business_settings SET restaurant_name = ?, currency = ?");
-            $stmt->bind_param("ss", $restaurant_name, $currency);
+            $stmt = $conn->prepare("UPDATE business_settings SET business_name = ?, currency = ?");
+            $stmt->bind_param("ss", $business_name, $currency);
         } else {
-            $stmt = $conn->prepare("INSERT INTO business_settings (restaurant_name, currency) VALUES (?, ?)");
-            $stmt->bind_param("ss", $restaurant_name, $currency);
+            $stmt = $conn->prepare("INSERT INTO business_settings (business_name, currency) VALUES (?, ?)");
+            $stmt->bind_param("ss", $business_name, $currency);
         }
 
         if ($stmt->execute()) {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $settings = [
-    'restaurant_name' => '',
+    'business_name' => '',
     'currency' => '$'
 ];
 $res = $conn->query("SELECT * FROM business_settings LIMIT 1");
@@ -151,10 +151,10 @@ if ($res && $res->num_rows > 0) {
 
                             <form method="POST" action="">
                                 <div class="mb-4">
-                                    <label for="restaurant_name" class="form-label fw-semibold text-secondary">Restaurant Name <span class="text-danger">*</span></label>
+                                    <label for="business_name" class="form-label fw-semibold text-secondary">Restaurant Name <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-utensils"></i></span>
-                                        <input type="text" class="form-control border-start-0 ps-0 py-2 shadow-none" id="restaurant_name" name="restaurant_name" value="<?php echo htmlspecialchars($settings['restaurant_name'] ?? ''); ?>" placeholder="e.g. Burger House" required>
+                                        <input type="text" class="form-control border-start-0 ps-0 py-2 shadow-none" id="business_name" name="business_name" value="<?php echo htmlspecialchars($settings['business_name'] ?? ''); ?>" placeholder="e.g. Crave Wave" required>
                                     </div>
                                     <div class="form-text mt-1 text-muted">This title will display at the top of your public QR menu page.</div>
                                 </div>

@@ -59,7 +59,7 @@ foreach ($items as $item) {
         * { box-sizing: border-box; }
         body { background: #fff8ed; color: #212529; }
         .menu-header { background: linear-gradient(135deg, #212529, #3b4550); padding: 52px 20px 44px; border-bottom: 5px solid #ffc107; }
-        .menu-header h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 5vw, 2.7rem); }.menu-header p { margin: 0; color: #fde68a; }.menu-brand-logo { width: 118px; height: 118px; object-fit: cover; display: block; margin: 0 auto 14px; border-radius: 50%; border: 4px solid #f7b733; box-shadow: 0 10px 26px rgba(0,0,0,.28); background: #fff; }
+        .menu-header h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 5vw, 2.7rem); }.menu-header p { margin: 0; color: #fde68a; }.menu-brand-link { display: block; width: max-content; margin: 0 auto 14px; border-radius: 50%; }.menu-brand-logo { width: 118px; height: 118px; object-fit: cover; display: block; border-radius: 50%; border: 4px solid #f7b733; box-shadow: 0 10px 26px rgba(0,0,0,.28); background: #fff; transition: transform .2s ease, box-shadow .2s ease; }.menu-brand-link:hover .menu-brand-logo, .menu-brand-link:focus-visible .menu-brand-logo { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,.38); }.menu-brand-link:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
         .container { max-width: 900px; padding: 22px 20px 36px; }
         .item-card { border-color: #f1e4cc; border-radius: 16px; padding: 16px; gap: 16px; box-shadow: 0 7px 20px rgba(100,70,20,.08); transition: transform .2s, box-shadow .2s; }
         .item-card:hover { transform: translateY(-2px); box-shadow: 0 11px 24px rgba(100,70,20,.14); }.item-img { width: 86px; height: 86px; flex: 0 0 86px; border-radius: 12px; background: #fff1cf; }
@@ -75,7 +75,9 @@ foreach ($items as $item) {
 <body>
 
     <div class="menu-header">
-        <img class="menu-brand-logo" src="assets/images/crave-wave-logo.png" alt="Crave Wave logo">
+        <a class="menu-brand-link" href="<?= htmlspecialchars(app_url('admin/login.php')) ?>" aria-label="Admin login">
+            <img class="menu-brand-logo" src="assets/images/crave-wave-logo.png" alt="Crave Wave logo">
+        </a>
         <h1><?php echo htmlspecialchars($settings['business_name'] ?? 'Crave Wave'); ?></h1>
         <p>Scan, browse, and enjoy our delicious menu items!</p>
     </div>

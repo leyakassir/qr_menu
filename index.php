@@ -38,7 +38,7 @@ foreach ($items as $item) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($settings['business_name'] ?? 'Digital Menu'); ?></title>
+    <title><?php echo htmlspecialchars($settings['business_name'] ?? 'Crave Wave'); ?></title>
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -74,7 +74,7 @@ foreach ($items as $item) {
 <body>
 
     <div class="menu-header">
-        <h1><i class="fa-solid fa-utensils"></i> <?php echo htmlspecialchars($settings['business_name'] ?? 'Our Restaurant'); ?></h1>
+        <h1><img src="assets/images/crave-wave-logo.png" alt="Crave Wave logo" style="width:58px;height:58px;vertical-align:middle;border-radius:50%;margin-right:10px;"> <?php echo htmlspecialchars($settings['business_name'] ?? 'Crave Wave'); ?></h1>
         <p>Scan, browse, and enjoy our delicious menu items!</p>
     </div>
 
@@ -127,7 +127,7 @@ foreach ($items as $item) {
     </div>
 
     <footer style="text-align: center; padding: 20px; color: #6c757d; font-size: 13px; border-top: 1px solid #dee2e6; margin-top: 40px;">
-        &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($settings['business_name'] ?? 'QR Menu'); ?>. All rights reserved.
+        &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($settings['business_name'] ?? 'Crave Wave'); ?>. All rights reserved.
     </footer>
 
 </body>

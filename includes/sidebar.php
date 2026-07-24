@@ -1,8 +1,8 @@
 <nav class="sidebar d-md-block text-white">
     <div class="position-sticky">
         <div class="text-center py-4 mb-3 border-bottom border-secondary">
-            <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>QR Menu</h4>
-            <small class="text-muted">Admin Control Panel</small>
+            <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>Crave Wave</h4>
+            <small class="text-muted">Crave Wave Admin</small>
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">

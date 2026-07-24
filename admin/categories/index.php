@@ -30,7 +30,7 @@ if ($res) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Categories - Restaurant QR Menu</title>
+    <title>Manage Categories - Crave Wave</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,7 +53,7 @@ if ($res) {
         @media (max-width: 800px) { .sidebar { position: static; width: 100%; height: auto; }.navbar-top { position: static; left: 0; }.main-content { margin-left: 0; padding: 25px 15px; } }
     </style>
     <style>
-        .sidebar { background: #2b1b17; }.sidebar .text-muted { color: #f5d9ad !important; }.sidebar .nav-link { color: #fff !important; }.sidebar .nav-link:hover, .sidebar .nav-link.active { background: rgba(247,183,51,.2); }.sidebar .sub-menu a { color: #ffe8c1 !important; }.sidebar .sub-menu a:hover { background: rgba(247,183,51,.12); color: #fff !important; }.sidebar .sub-menu a.active { background: #f7b733; color: #2b1b17 !important; font-weight: 700; }.sidebar-heading { color: #f7b733; }.navbar-top { border-bottom-color: #f7b733; }.btn-primary, .bg-primary:not(.badge) { background-color: #d94841 !important; }.badge.bg-primary { color: #b52f2a !important; background: #fff0d5 !important; }.text-primary { color: #d94841 !important; }.category-title { border-left-color: #f76707; }
+        .sidebar { background: #2b1b17; }.sidebar .text-muted { color: #f5d9ad !important; }.sidebar h4 .fa-burger { display:none; }.sidebar h4:before { content:"";display:inline-block;width:38px;height:38px;margin-right:9px;vertical-align:middle;background:url('/assets/images/crave-wave-logo.png') center/cover no-repeat;border-radius:50%; }.sidebar .nav-link { color: #fff !important; }.sidebar .nav-link:hover, .sidebar .nav-link.active { background: rgba(247,183,51,.2); }.sidebar .sub-menu a { color: #ffe8c1 !important; }.sidebar .sub-menu a:hover { background: rgba(247,183,51,.12); color: #fff !important; }.sidebar .sub-menu a.active { background: #f7b733; color: #2b1b17 !important; font-weight: 700; }.sidebar-heading { color: #f7b733; }.navbar-top { border-bottom-color: #f7b733; }.btn-primary, .bg-primary:not(.badge) { background-color: #d94841 !important; }.badge.bg-primary { color: #b52f2a !important; background: #fff0d5 !important; }.text-primary { color: #d94841 !important; }.category-title { border-left-color: #f76707; }
     </style>
     <?php render_admin_sidebar_controls(); ?>
 </head>
@@ -63,8 +63,8 @@ if ($res) {
     <nav class="sidebar d-md-block text-white">
         <div class="position-sticky">
             <div class="text-center py-4 mb-3 border-bottom border-secondary">
-                <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>QR Menu</h4>
-                <small class="text-muted">Admin Control Panel</small>
+                <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>Crave Wave</h4>
+                <small class="text-muted">Crave Wave Admin</small>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">

@@ -71,7 +71,7 @@ if ($res_breakdown) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Restaurant QR Menu</title>
+    <title>Admin Dashboard - Crave Wave</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -87,8 +87,8 @@ if ($res_breakdown) {
     <nav class="sidebar d-md-block text-white">
         <div class="position-sticky">
             <div class="text-center py-4 mb-3 border-bottom border-secondary">
-                <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>QR Menu</h4>
-                <small class="text-muted">Admin Control Panel</small>
+                <h4 class="text-white m-0 fw-bold"><i class="fa-solid fa-burger text-warning me-2"></i>Crave Wave</h4>
+                <small class="text-muted">Crave Wave Admin</small>
             </div>
             
             <ul class="nav flex-column">
@@ -381,7 +381,7 @@ if ($res_breakdown) {
                                 <i class="fa-solid fa-circle text-success me-2 small"></i> Server Online (Apache)
                             </li>
                             <li class="d-flex align-items-center">
-                                <i class="fa-solid fa-circle text-success me-2 small"></i> QR Menu Active
+                                <i class="fa-solid fa-circle text-success me-2 small"></i> Crave Wave Active
                             </li>
                         </ul>
                     </div>

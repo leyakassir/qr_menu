@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="fork"></div>
             <div class="knife"></div>
             <div class="burger">🍔</div>
-            <h2>Restaurant QR Menu</h2>
+            <h2>Crave Wave</h2>
             <p>
                 Manage your menu, categories, prices,
                 availability and customer experience

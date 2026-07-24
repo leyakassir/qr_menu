@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="login-container">
     <div class="left-panel">
         <div class="illustration">
-            <img class="login-brand-logo" src="../assets/images/crave-wave-logo.png" alt="Crave Wave logo">
+            <img class="login-brand-logo" src="../assets/images/crave-wave-logo.png" alt="Crave Wave logo" style="width:120px;height:120px;object-fit:cover;border-radius:50%;display:block;margin:0 auto 22px;">
             <div class="plate"></div>
             <div class="fork"></div>
             <div class="knife"></div>
